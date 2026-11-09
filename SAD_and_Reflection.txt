@@ -1,0 +1,48 @@
+WINE QUALITY PREDICTION SYSTEM
+Complete Package: SAD Mini-Analysis and Reflection Answers
+
+SAD MINI-ANALYSIS
+1. Problem statement:
+A wine producer needs a consistent preliminary way to screen wine samples using recorded physicochemical measurements.
+
+2. Users:
+Quality-control staff, production supervisor, or data analyst.
+
+3. Inputs:
+Fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, and alcohol.
+
+4. Process:
+Validate input columns -> preprocess data -> apply trained model -> classify the quality category.
+
+5. Outputs:
+GOOD QUALITY or NEEDS IMPROVEMENT label and model evaluation summary.
+
+6. Key limitation:
+The model is trained on a particular red-wine dataset and may not generalize to other wine types, producers, regions, or testing conditions.
+
+MINI USE-CASE
+The user enters sample measurements or uploads a CSV file. The system checks the required columns, predicts the quality category, displays the results, and allows the user to export them.
+
+REFLECTION ANSWERS
+1. What is the prediction target, and why is the original quality column excluded from the input features?
+Answer:
+The prediction target is the wine quality category: GOOD QUALITY when the quality score is 6 or higher, and NEEDS IMPROVEMENT when it is below 6. The original quality column is excluded because it is used to create the target. Including it as an input would reveal the answer to the model and cause target leakage.
+
+2. What does recall for the GOOD QUALITY class tell you? What could low recall mean for the business?
+Answer:
+Recall for the GOOD QUALITY class tells us how many actual good-quality wine samples the model correctly identifies. Low recall means that some good-quality samples are classified as needing improvement. This may cause the business to miss or reject good batches during preliminary screening.
+
+3. Why might a model trained on this red-wine dataset perform differently on another producer's wine samples?
+Answer:
+The model was trained using a specific red-wine dataset. Another producer may use different grapes, processes, locations, or conditions. These differences can change the measurements and may affect the model's predictions.
+
+4. Why should the prediction be treated as a preliminary screening result rather than a final quality decision?
+Answer:
+The model is only a classroom prototype and its predictions may not always be correct. It cannot replace laboratory testing, sensory evaluation, food-safety procedures, or professional quality-control decisions.
+
+5. What additional data or testing would help improve the reliability of the system?
+Answer:
+More wine samples from different producers, regions, and production conditions would help. The system should also be tested using new samples and compared with laboratory results or professional quality assessments. More testing and evaluation can show whether the model works reliably in real situations.
+
+MODEL EVALUATION NOTE
+Run `python train_model.py` to generate the actual accuracy, confusion matrix, precision, recall, and F1-score. Copy the printed values into the submission. Do not invent or report evaluation values before running the script.
